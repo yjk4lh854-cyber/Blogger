@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>Snow Effect</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      overflow: hidden;
+    }
+    img.snowflake {
+      position: absolute;
+      pointer-events: none;
+      z-index: 9999;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+  <script>
+    setInterval(function () {
+      const img = $("<img class='snowflake' src='https://i.imgur.com/5KXg9Yz.png'>"); // ✅ 替換為你的雪花圖片
+      $("body").append(img);
+
+      const size = Math.floor(Math.random() * 21) + 20; // 20–40px
+      img.css("width", size + "px");
+
+      const w = $(window).width();
+      const left = Math.floor(Math.random() * (w - size));
+      img.css("left", left + "px");
+
+      const top = $(window).height() - size;
+      img.animate({ top: top + "px", opacity: 0.7 }, size * 100, function () {
+        img.remove();
+      });
+    }, 100);
+  </script>
+</body>
+</html>
